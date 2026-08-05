@@ -305,7 +305,7 @@ function initTheme(){
 function initContactForm() {
 
     emailjs.init({
-        publicKey: "h8CReX6GzcuaAEqBV"
+        publicKey: "uMOVUW6aRLQzQ2yKm"
     });
 
     const form = document.getElementById("contactForm");
@@ -334,7 +334,7 @@ function initContactForm() {
         };
 
         emailjs.send(
-            "service_jcutntd",
+            "service_t91eyma",
             "template_ytse81o",
             params
         )
