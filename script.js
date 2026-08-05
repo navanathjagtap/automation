@@ -176,10 +176,10 @@ async function initGitHub() {
 
     // Dummy Profile
     const dummyProfile = {
-        public_repos: 23,
-        followers: 1,
-        following: 0,
-        public_gists: 0
+        public_repos: 26,
+        followers: 21,
+        following: 12,
+        public_gists: 10
     };
 
     // Dummy Repositories
