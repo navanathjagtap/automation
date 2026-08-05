@@ -170,88 +170,138 @@ function initCounters(){
    GITHUB API
 ========================================================== */
 
-async function initGitHub(){
+async function initGitHub() {
 
-    const username="navanathjagtap";
+    const username = "navanathjagtap";
 
-    try{
+    // Dummy Profile
+    const dummyProfile = {
+        public_repos: 23,
+        followers: 1,
+        following: 0,
+        public_gists: 0
+    };
+
+    // Dummy Repositories
+    const dummyRepos = [
+        {
+            name: "Portfolio Website",
+            description: "Professional QA Automation Portfolio built using HTML, CSS & JavaScript.",
+            stargazers_count: 12,
+            language: "HTML",
+            html_url: "https://github.com/navanathjagtap"
+        },
+        {
+            name: "Selenium Automation Framework",
+            description: "Java Selenium TestNG Hybrid Automation Framework.",
+            stargazers_count: 8,
+            language: "Java",
+            html_url: "https://github.com/navanathjagtap"
+        },
+        {
+            name: "API Automation",
+            description: "REST Assured API Testing Framework with TestNG.",
+            stargazers_count: 6,
+            language: "Java",
+            html_url: "https://github.com/navanathjagtap"
+        },
+        {
+            name: "Appium Mobile Automation",
+            description: "Android & iOS Automation using Appium.",
+            stargazers_count: 4,
+            language: "Java",
+            html_url: "https://github.com/navanathjagtap"
+        },
+        {
+            name: "Playwright Automation",
+            description: "Modern UI Automation using Playwright.",
+            stargazers_count: 5,
+            language: "TypeScript",
+            html_url: "https://github.com/navanathjagtap"
+        },
+        {
+            name: "Python Automation",
+            description: "Python Selenium Automation Framework.",
+            stargazers_count: 3,
+            language: "Python",
+            html_url: "https://github.com/navanathjagtap"
+        }
+    ];
+
+    try {
 
         // Profile
+        const profileResponse = await fetch(`https://api.github.com/users/${username}`);
 
-        const profile=await fetch(
-            `https://api.github.com/users/${username}`
-        );
+        if (!profileResponse.ok) {
+            throw new Error("GitHub API Error");
+        }
 
-        const user=await profile.json();
+        const user = await profileResponse.json();
 
-        document.getElementById("repoCount").innerText=user.public_repos;
+        document.getElementById("repoCount").innerText = user.public_repos;
+        document.getElementById("followers").innerText = user.followers;
+        document.getElementById("following").innerText = user.following;
+        document.getElementById("publicGists").innerText = user.public_gists;
 
-        document.getElementById("followers").innerText=user.followers;
+        // Repositories
+        const repoResponse = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
 
-        document.getElementById("following").innerText=user.following;
+        if (!repoResponse.ok) {
+            throw new Error("Repository API Error");
+        }
 
-        document.getElementById("publicGists").innerText=user.public_gists;
+        const repos = await repoResponse.json();
 
-        // Latest Repositories
+        displayRepositories(repos);
 
-        const repoResponse=await fetch(
-            `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`
-        );
+    } catch (error) {
 
-        const repos=await repoResponse.json();
+        console.log("GitHub API failed. Loading dummy data.");
 
-        const repoContainer=document.getElementById("repoContainer");
+        // Dummy Stats
+        document.getElementById("repoCount").innerText = dummyProfile.public_repos;
+        document.getElementById("followers").innerText = dummyProfile.followers;
+        document.getElementById("following").innerText = dummyProfile.following;
+        document.getElementById("publicGists").innerText = dummyProfile.public_gists;
 
-        repoContainer.innerHTML="";
+        // Dummy Repositories
+        displayRepositories(dummyRepos);
+    }
+}
 
-        repos.forEach(repo=>{
+// Common Repository Display Function
+function displayRepositories(repos) {
 
-            repoContainer.innerHTML+=`
+    const repoContainer = document.getElementById("repoContainer");
 
+    repoContainer.innerHTML = "";
+
+    repos.forEach(repo => {
+
+        repoContainer.innerHTML += `
             <div class="repo-card">
 
                 <h4>${repo.name}</h4>
 
-                <p>
-
-                    ${repo.description || "No description available"}
-
-                </p>
+                <p>${repo.description || "No description available"}</p>
 
                 <div class="repo-footer">
-
                     <span>⭐ ${repo.stargazers_count}</span>
-
                     <span>${repo.language || "N/A"}</span>
-
                 </div>
 
                 <br>
 
                 <a href="${repo.html_url}"
-
                    target="_blank"
-
                    class="project-btn">
-
                    View Repository
-
                 </a>
 
             </div>
-
-            `;
-
-        });
-
-    }
-
-    catch(error){
-
-        console.log(error);
-
-    }
-
+        `;
+    });
 }
 
 /* ==========================================================
