@@ -21,6 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initTilt();
 
+    initActiveNav();
+
+    initProgressBar();
+
+    initReveal();
+
 });
 /* ==========================================================
    TYPING EFFECT
@@ -488,4 +494,21 @@ function initReveal(){
     reveals.forEach(item=>observer.observe(item));
 
 }
+/* ==========================================================
+   LOADER
+========================================================== */
+
+window.addEventListener("load",()=>{
+
+    const loader=document.getElementById("loader");
+
+    loader.style.opacity="0";
+
+    setTimeout(()=>{
+
+        loader.style.display="none";
+
+    },500);
+
+});
 
