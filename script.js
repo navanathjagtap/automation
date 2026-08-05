@@ -172,7 +172,7 @@ function initCounters(){
 
 async function initGitHub(){
 
-    const username="navnathjagtap23";
+    const username="navanathjagtap";
 
     try{
 
