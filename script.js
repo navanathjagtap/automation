@@ -455,3 +455,37 @@ function initProgressBar(){
     });
 
 }
+/* ==========================================================
+   SCROLL REVEAL
+========================================================== */
+
+function initReveal(){
+
+    const reveals=document.querySelectorAll(
+
+        ".section,.skill-card,.project-card,.certificate-card,.github-card,.achievement-card"
+
+    );
+
+    const observer=new IntersectionObserver(entries=>{
+
+        entries.forEach(entry=>{
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("show");
+
+            }
+
+        });
+
+    },{
+
+        threshold:.15
+
+    });
+
+    reveals.forEach(item=>observer.observe(item));
+
+}
+
