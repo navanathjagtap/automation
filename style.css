@@ -2775,3 +2775,68 @@ textarea{
     transform:translateY(0);
 
 }
+/* ==========================================================
+   LOADER
+========================================================== */
+
+#loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#020617;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999999;
+
+    transition:.5s;
+
+}
+
+.loader-box{
+
+    text-align:center;
+
+}
+
+.spinner{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    border:5px solid rgba(255,255,255,.1);
+
+    border-top:5px solid #06B6D4;
+
+    animation:spin 1s linear infinite;
+
+    margin:auto;
+
+}
+
+.loader-box h2{
+
+    margin-top:25px;
+
+    color:#fff;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
