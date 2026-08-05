@@ -304,7 +304,7 @@ function initTheme(){
 
 function initContactForm(){
 
-    emailjs.init("YOUR_PUBLIC_KEY");
+    emailjs.init("uMK8hIXhF1sy4xtJf");
 
     const form=document.getElementById("contactForm");
 
@@ -334,9 +334,9 @@ function initContactForm(){
 
         emailjs.send(
 
-            "YOUR_SERVICE_ID",
+            "service_jcutntd",
 
-            "YOUR_TEMPLATE_ID",
+            "template_ytse81o",
 
             params
 
