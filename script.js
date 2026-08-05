@@ -335,7 +335,7 @@ function initContactForm() {
 
         emailjs.send(
             "service_t5ijl9r",
-            "template_o3xxlys",
+            "template_99m0mh7",
             params
         )
         .then(function () {
