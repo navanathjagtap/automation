@@ -2724,3 +2724,28 @@ textarea{
     }
 
 }
+/* ==========================================================
+   SCROLL PROGRESS
+========================================================== */
+
+#progressBar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:0;
+
+    height:4px;
+
+    z-index:99999;
+
+    background:linear-gradient(
+        90deg,
+        #2563EB,
+        #06B6D4
+    );
+
+}
