@@ -2749,3 +2749,29 @@ textarea{
     );
 
 }
+/* ==========================================================
+   REVEAL ANIMATION
+========================================================== */
+
+.section,
+.skill-card,
+.project-card,
+.github-card,
+.certificate-card,
+.achievement-card{
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:all .8s ease;
+
+}
+
+.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
