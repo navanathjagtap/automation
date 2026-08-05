@@ -304,14 +304,11 @@ function initTheme(){
 
 function initContactForm() {
 
-    // Initialize EmailJS
     emailjs.init({
-        publicKey: "uMK8hlXhF1sy4xtJf"
+        publicKey: "h8CReX6GzcuaAEqBV"
     });
 
     const form = document.getElementById("contactForm");
-
-    if (!form) return;
 
     form.addEventListener("submit", function (e) {
 
@@ -319,8 +316,8 @@ function initContactForm() {
 
         const btn = document.querySelector(".send-btn");
 
+        btn.innerHTML = "Sending...";
         btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
         const params = {
 
@@ -337,38 +334,29 @@ function initContactForm() {
         };
 
         emailjs.send(
-
             "service_jcutntd",
-
             "template_ytse81o",
-
             params
-
         )
-
-        .then(function (response) {
-
-            console.log("SUCCESS!", response);
+        .then(function () {
 
             alert("✅ Message sent successfully!");
 
             form.reset();
 
         })
-
         .catch(function (error) {
 
-            console.error("EMAILJS ERROR:", error);
+            console.error(error);
 
-            alert("❌ " + (error.text || error.message || JSON.stringify(error)));
+            alert("❌ " + JSON.stringify(error));
 
         })
-
         .finally(function () {
 
-            btn.disabled = false;
-
             btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+
+            btn.disabled = false;
 
         });
 
