@@ -302,33 +302,37 @@ function initTheme(){
    EMAILJS
 ========================================================== */
 
-function initContactForm(){
+function initContactForm() {
 
-    emailjs.init("uMK8hIXhF1sy4xtJf");
+    // Initialize EmailJS
+    emailjs.init({
+        publicKey: "uMK8hlXhF1sy4xtJf"
+    });
 
-    const form=document.getElementById("contactForm");
+    const form = document.getElementById("contactForm");
 
-    form.addEventListener("submit",function(e){
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
 
         e.preventDefault();
 
-        const btn=document.querySelector(".send-btn");
+        const btn = document.querySelector(".send-btn");
 
-        btn.innerHTML="Sending...";
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-        btn.disabled=true;
+        const params = {
 
-        const params={
+            from_name: document.getElementById("name").value,
 
-            from_name:document.getElementById("name").value,
+            from_email: document.getElementById("email").value,
 
-            from_email:document.getElementById("email").value,
+            company: document.getElementById("company").value,
 
-            company:document.getElementById("company").value,
+            subject: document.getElementById("subject").value,
 
-            subject:document.getElementById("subject").value,
-
-            message:document.getElementById("message").value
+            message: document.getElementById("message").value
 
         };
 
@@ -342,7 +346,9 @@ function initContactForm(){
 
         )
 
-        .then(function(){
+        .then(function (response) {
+
+            console.log("SUCCESS!", response);
 
             alert("✅ Message sent successfully!");
 
@@ -350,19 +356,19 @@ function initContactForm(){
 
         })
 
-        .catch(function(error){
+        .catch(function (error) {
 
-            alert("❌ Failed to send message.");
+            console.error("EMAILJS ERROR:", error);
 
-            console.log(error);
+            alert("❌ " + (error.text || error.message || JSON.stringify(error)));
 
         })
 
-        .finally(function(){
+        .finally(function () {
 
-            btn.innerHTML='<i class="fas fa-paper-plane"></i> Send Message';
+            btn.disabled = false;
 
-            btn.disabled=false;
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
 
         });
 
