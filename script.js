@@ -321,21 +321,21 @@ function initContactForm() {
 
         const params = {
 
-            from_name: document.getElementById("name").value,
+    name: document.getElementById("name").value,
 
-            from_email: document.getElementById("email").value,
+    email: document.getElementById("email").value,
 
-            company: document.getElementById("company").value,
+    title: document.getElementById("subject").value,
 
-            subject: document.getElementById("subject").value,
+    message: document.getElementById("message").value,
 
-            message: document.getElementById("message").value
+    time: new Date().toLocaleString()
 
-        };
+};
 
         emailjs.send(
-            "service_t91eyma",
-            "template_ytse81o",
+            "service_t5ijl9r",
+            "template_o3xxlys",
             params
         )
         .then(function () {
